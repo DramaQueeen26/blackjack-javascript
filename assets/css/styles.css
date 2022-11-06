@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono:ital@0;1&display=swap');
+
+html, body{
+    margin: 0px;
+    background-color: #225324 !important;
+    color: #fff !important;
+    font-family: 'Xanh Mono', monospace !important;
+}
+
+.title{
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    font-size: 25px;
+}
+
+.card {
+    width: 150px;
+}
+
+/* #card-player, #card-computer {
+    height: 250px;
+} */

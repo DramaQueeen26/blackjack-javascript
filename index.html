@@ -6,9 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blackjack</title>
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
+    <header class="title">
+        Blackjack
+    </header>
 
+    <div class="row mt-2">
+        <div class="col text-center mt-3">
+            
+            <button class="btn btn-primary">Nuevo Juego</button>
+            <button class="btn btn-primary">Pedir Carta</button>
+            <button class="btn btn-danger">Detener</button>
+        
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col">
+
+                <h1 class="mt-3">Jugador 1 - <small>0</small></h1>
+                <div id="card-player" class="d-flex justify-content-center flex-wrap">
+                    
+                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                <h1 class="mt-3">Computadora 1 - <small>0</small></h1>
+                <div id="card-computer" class="d-flex justify-content-center flex-wrap">
+                    
+                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script src="./assets/js/juego.js"></script>
 </body>
 </html>
