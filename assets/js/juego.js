@@ -6,6 +6,7 @@ let deck        = [];
 const types     = ['C', 'D', 'H', 'S'];
 const specials  = ['A', 'J', 'Q', 'K'];
 
+// Crear deck
 const createDeck = () => {
 
     for( let i = 2; i <= 10; i++) {
@@ -28,7 +29,6 @@ const createDeck = () => {
 
     }
 
-    console.log(deck);
     deck = _.shuffle(deck);
     console.log(deck);
 
@@ -36,3 +36,18 @@ const createDeck = () => {
 }
 
 createDeck();
+
+// Pedir carta
+const takeCard = () => {
+
+    if( deck.length === 0 ){
+        throw 'No hay cartas en el deck';
+    }
+
+    const card = deck.pop();
+    console.log(card);
+    console.log(deck);
+
+}
+
+takeCard();
