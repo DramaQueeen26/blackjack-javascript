@@ -45,9 +45,21 @@ const takeCard = () => {
     }
 
     const card = deck.pop();
-    console.log(card);
-    console.log(deck);
+    
+    return card;
 
 }
 
-takeCard();
+// Valor de cada carta
+const cardValue = ( card ) => {
+    
+    const value = card.substring(0, card.length - 1);
+    
+    return ( isNaN( value ) ) ? 
+            ( value === 'A' ) ? 11 : 10
+            : value * 1;
+
+}
+
+const value = cardValue( takeCard() );
+console.log({ value });
