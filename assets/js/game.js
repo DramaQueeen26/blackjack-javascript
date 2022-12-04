@@ -11,6 +11,7 @@ let computerPoints = 0;
 
 // * Referencias del HTML
 let btnTakeCard = document.querySelector('#btn-take-card');
+let btnStopGame = document.querySelector('#btn-stop-game');
 let HTMLPoints = document.querySelectorAll('small');
 let playerCard = document.querySelector('#player-card');
 let computerCard = document.querySelector('#computer-card');
@@ -70,6 +71,31 @@ const cardValue = ( card ) => {
 
 }
 
+// * Turno de la computador
+const computerShift = ( minPoints ) => {
+
+    
+    
+    do {
+        
+        const card = takeCard();
+    
+        computerPoints += cardValue( card );
+    
+        HTMLPoints[1].innerText = computerPoints;
+    
+        const cardImg = document.createElement('img');
+        cardImg.src = `assets/cartas/${ card }.png`;
+        cardImg.classList.add('img-card');
+    
+        computerCard.append(cardImg);
+
+        if( minPoints > 21 ) break;
+
+    } while( (computerPoints < minPoints ) && (minPoints <= 21));
+
+}
+
 // * Eventos
 btnTakeCard.addEventListener('click', () => {
     const card = takeCard();
@@ -91,6 +117,9 @@ btnTakeCard.addEventListener('click', () => {
         alert.innerText = 'Lo siento mucho, perdiste';
 
         btnTakeCard.disabled = true;
+        btnStopGame.disabled = true;
+
+        computerShift( playerPoints );
 
     }else if ( playerPoints == 21 ){
 
@@ -99,7 +128,19 @@ btnTakeCard.addEventListener('click', () => {
         alert.innerText = '¡Ganaste!';
 
         btnTakeCard.disabled = true;
+        btnStopGame.disabled = true;
+
+
+        computerShift( playerPoints );
 
     }
+
+})
+
+btnStopGame.addEventListener('click', () => {
+    btnTakeCard.disabled = true;
+    btnStopGame.disabled = true;
+    
+    computerShift( playerPoints );
 
 })
