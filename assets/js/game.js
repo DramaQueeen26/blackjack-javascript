@@ -10,12 +10,16 @@ let playerPoints = 0;
 let computerPoints = 0; 
 
 // * Referencias del HTML
+
 let btnTakeCard = document.querySelector('#btn-take-card');
 let btnStopGame = document.querySelector('#btn-stop-game');
+let btnNewGame = document.querySelector('#btn-new-game');
+
 let HTMLPoints = document.querySelectorAll('small');
+let alert = document.querySelector('.alert');
+
 let playerCard = document.querySelector('#player-card');
 let computerCard = document.querySelector('#computer-card');
-let alert = document.querySelector('.alert');
 
 // * Crear deck
 const createDeck = () => {
@@ -41,7 +45,6 @@ const createDeck = () => {
     }
 
     deck = _.shuffle(deck);
-    console.log(deck);
     return deck;
 }
 
@@ -172,4 +175,25 @@ btnStopGame.addEventListener('click', () => {
     
     computerShift( playerPoints );
 
+})
+
+btnNewGame.addEventListener('click', () => {
+    btnTakeCard.disabled = false;
+    btnStopGame.disabled = false;
+
+    playerPoints = 0;
+    computerPoints = 0;
+    HTMLPoints[0].innerText = 0;
+    HTMLPoints[1].innerText = 0;
+
+    playerCard.innerHTML = '';
+    computerCard.innerHTML = '';
+
+    alert.innerText = '';
+    alert.classList.remove('alert-success');
+    alert.classList.remove('alert-danger');
+    alert.classList.remove('alert-warning');
+
+    deck = [];
+    createDeck();
 })
