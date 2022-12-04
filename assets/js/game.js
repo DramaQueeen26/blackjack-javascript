@@ -3,23 +3,33 @@
  */
 
 let deck        = [];
+let round        = 1;
 const types     = ['C', 'D', 'H', 'S'];
 const specials  = ['A', 'J', 'Q', 'K'];
 
 let playerPoints = 0;
 let computerPoints = 0; 
 
+
 // * Referencias del HTML
 
 let btnTakeCard = document.querySelector('#btn-take-card');
 let btnStopGame = document.querySelector('#btn-stop-game');
 let btnNewGame = document.querySelector('#btn-new-game');
+btnNewGame.disabled = true;
 
 let HTMLPoints = document.querySelectorAll('small');
 let alert = document.querySelector('.alert');
 
 let playerCard = document.querySelector('#player-card');
 let computerCard = document.querySelector('#computer-card');
+
+let playerNameSpan = document.querySelector('#player-name');
+let playerName = prompt('Introduce tu nombre');
+playerNameSpan.innerText = playerName;
+
+let historial = document.querySelector('#historial');
+
 
 // * Crear deck
 const createDeck = () => {
@@ -97,47 +107,78 @@ const computerShift = ( minPoints ) => {
 
     setTimeout( () => {
 
+        // * Crear elemento tr para agregar al ganador
+        let tr = document.createElement('tr');
+        tr.classList.add(`round-${round}`);
+        historial.append(tr);
+        
+        // * Creando todos los td de la tabla
+        let historialRoundClass = document.querySelector(`.round-${round}`);
+        let roundTable = document.createElement('td');
+        let playerPointsTable = document.createElement('td');
+        let computerPointsTable = document.createElement('td');
+        let winnerTable = document.createElement('td');
+
+        roundTable.innerText = `#${round}`;
+        playerPointsTable.innerText = minPoints;
+        computerPointsTable.innerText = computerPoints;
+
         if( computerPoints === minPoints){
             alert.classList.add('mt-4');
             alert.classList.add('alert-warning');
-            alert.innerText = 'Nadie gana :(';
+            alert.innerText = 'Nadie gana :(';     
+            winnerTable.innerText = 'Empate';
         }
 
         if( computerPoints === 21){
             alert.classList.add('mt-4');
             alert.classList.add('alert-danger');
             alert.innerText = 'Lo siento mucho, la computadora gana';
+            winnerTable.innerText = 'Computadora';
         }
 
         if( minPoints === 21){
             alert.classList.add('mt-4');
             alert.classList.add('alert-success');
             alert.innerText = '¡Ganaste!';
+            winnerTable.innerText = playerName;
         }
 
         if( minPoints > 21){
             alert.classList.add('mt-4');
             alert.classList.add('alert-danger');
             alert.innerText = 'Lo siento mucho, la computadora gana';
+            winnerTable.innerText = 'Computadora';
         }
 
         if( computerPoints < 21 && computerPoints > minPoints) {
             alert.classList.add('mt-4');
             alert.classList.add('alert-danger');
             alert.innerText = 'Lo siento mucho, la computadora gana';
+            winnerTable.innerText = 'Computadora';
         }
 
         if( computerPoints > 21 && minPoints < 21){
             alert.classList.add('mt-4');
             alert.classList.add('alert-success');
             alert.innerText = '¡Ganaste!';
+            winnerTable.innerText = playerName;
         }
 
         if( minPoints < 21 && minPoints > computerPoints) {
             alert.classList.add('mt-4');
             alert.classList.add('alert-success');
             alert.innerText = '¡Ganaste!';
+            winnerTable.innerText = playerName;
         }
+
+        // * Agregando el contenido a la tabla
+        historialRoundClass.append(roundTable);
+        historialRoundClass.append(playerPointsTable);
+        historialRoundClass.append(computerPointsTable);
+        historialRoundClass.append(winnerTable);
+
+        btnNewGame.disabled = false;
 
     }, '500')
 
@@ -180,6 +221,7 @@ btnStopGame.addEventListener('click', () => {
 btnNewGame.addEventListener('click', () => {
     btnTakeCard.disabled = false;
     btnStopGame.disabled = false;
+    btnNewGame.disabled = true;
 
     playerPoints = 0;
     computerPoints = 0;
@@ -195,5 +237,6 @@ btnNewGame.addEventListener('click', () => {
     alert.classList.remove('alert-warning');
 
     deck = [];
+    round++;
     createDeck();
 })
