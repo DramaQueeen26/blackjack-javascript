@@ -74,8 +74,6 @@ const cardValue = ( card ) => {
 // * Turno de la computador
 const computerShift = ( minPoints ) => {
 
-    
-    
     do {
         
         const card = takeCard();
@@ -94,6 +92,53 @@ const computerShift = ( minPoints ) => {
 
     } while( (computerPoints < minPoints ) && (minPoints <= 21));
 
+    setTimeout( () => {
+
+        if( computerPoints === minPoints){
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-warning');
+            alert.innerText = 'Nadie gana :(';
+        }
+
+        if( computerPoints === 21){
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-danger');
+            alert.innerText = 'Lo siento mucho, la computadora gana';
+        }
+
+        if( minPoints === 21){
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-success');
+            alert.innerText = '¡Ganaste!';
+        }
+
+        if( minPoints > 21){
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-danger');
+            alert.innerText = 'Lo siento mucho, la computadora gana';
+        }
+
+        if( computerPoints < 21 && computerPoints > minPoints) {
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-danger');
+            alert.innerText = 'Lo siento mucho, la computadora gana';
+        }
+
+        if( computerPoints > 21 && minPoints < 21){
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-success');
+            alert.innerText = '¡Ganaste!';
+        }
+
+        if( minPoints < 21 && minPoints > computerPoints) {
+            alert.classList.add('mt-4');
+            alert.classList.add('alert-success');
+            alert.innerText = '¡Ganaste!';
+        }
+
+    }, '500')
+
+
 }
 
 // * Eventos
@@ -110,26 +155,10 @@ btnTakeCard.addEventListener('click', () => {
 
     playerCard.append(cardImg);
 
-    if( playerPoints > 21 ){
-        
-        alert.classList.add('mt-4');
-        alert.classList.add('alert-danger');
-        alert.innerText = 'Lo siento mucho, perdiste';
+    if( playerPoints >= 21 ){
 
         btnTakeCard.disabled = true;
         btnStopGame.disabled = true;
-
-        computerShift( playerPoints );
-
-    }else if ( playerPoints == 21 ){
-
-        alert.classList.add('mt-4');
-        alert.classList.add('alert-success');
-        alert.innerText = '¡Ganaste!';
-
-        btnTakeCard.disabled = true;
-        btnStopGame.disabled = true;
-
 
         computerShift( playerPoints );
 
