@@ -13,12 +13,16 @@
         Blackjack
     </header>
 
+    <div class="alert w-50 d-block mx-auto">
+        
+    </div>
+
     <div class="row mt-2">
-        <div class="col text-center mt-3">
+        <div id="btn-group" class="col text-center">
             
-            <button class="btn btn-primary">Nuevo Juego</button>
-            <button class="btn btn-primary">Pedir Carta</button>
-            <button class="btn btn-danger">Detener</button>
+            <button id="btn-new-game" class="btn btn-primary">Nuevo Juego</button>
+            <button id="btn-take-card" class="btn btn-primary">Pedir Carta</button>
+            <button id="btn-stop-game" class="btn btn-danger">Detener</button>
         
         </div>
     </div>
@@ -28,9 +32,7 @@
             <div class="col">
 
                 <h1 class="mt-3">Jugador 1 - <small>0</small></h1>
-                <div id="card-player" class="d-flex justify-content-center flex-wrap">
-                    
-                    <img class="card m-2" src="./assets/cartas/10C.png" alt="Card">
+                <div id="player-card" class="d-flex justify-content-center flex-wrap">
 
                 </div>
             </div>
@@ -40,9 +42,7 @@
             <div class="col">
 
                 <h1 class="mt-3">Computadora 1 - <small>0</small></h1>
-                <div id="card-computer" class="d-flex justify-content-center flex-wrap">
-                    
-                    <img class="card m-2" src="./assets/cartas/3C.png" alt="Card">
+                <div id="computer-card" class="d-flex justify-content-center flex-wrap">
 
                 </div>
             </div>
