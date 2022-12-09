@@ -123,49 +123,21 @@ const computerShift = ( minPoints ) => {
         playerPointsTable.innerText = minPoints;
         computerPointsTable.innerText = computerPoints;
 
-        if( computerPoints === minPoints){
+        if( computerPoints === minPoints ){
             alert.classList.add('mt-4');
             alert.classList.add('alert-warning');
             alert.innerText = 'Nadie gana :(';     
             winnerTable.innerText = 'Empate';
         }
 
-        if( computerPoints === 21){
+        if( computerPoints === 21 || minPoints > 21 || ( computerPoints < 21 && computerPoints > minPoints )){
             alert.classList.add('mt-4');
             alert.classList.add('alert-danger');
             alert.innerText = 'Lo siento mucho, la computadora gana';
             winnerTable.innerText = 'Computadora';
         }
 
-        if( minPoints === 21){
-            alert.classList.add('mt-4');
-            alert.classList.add('alert-success');
-            alert.innerText = '¡Ganaste!';
-            winnerTable.innerText = playerName;
-        }
-
-        if( minPoints > 21){
-            alert.classList.add('mt-4');
-            alert.classList.add('alert-danger');
-            alert.innerText = 'Lo siento mucho, la computadora gana';
-            winnerTable.innerText = 'Computadora';
-        }
-
-        if( computerPoints < 21 && computerPoints > minPoints) {
-            alert.classList.add('mt-4');
-            alert.classList.add('alert-danger');
-            alert.innerText = 'Lo siento mucho, la computadora gana';
-            winnerTable.innerText = 'Computadora';
-        }
-
-        if( computerPoints > 21 && minPoints < 21){
-            alert.classList.add('mt-4');
-            alert.classList.add('alert-success');
-            alert.innerText = '¡Ganaste!';
-            winnerTable.innerText = playerName;
-        }
-
-        if( minPoints < 21 && minPoints > computerPoints) {
+        if( minPoints === 21 || ( computerPoints > 21 && minPoints < 21 ) || ( minPoints < 21 && minPoints > computerPoints )){
             alert.classList.add('mt-4');
             alert.classList.add('alert-success');
             alert.innerText = '¡Ganaste!';
